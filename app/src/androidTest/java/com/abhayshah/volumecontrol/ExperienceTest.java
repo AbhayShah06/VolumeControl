@@ -180,7 +180,7 @@ public class ExperienceTest {
             onView(withText("Check compatibility")).perform(scrollTo(), click());
             onView(withText("Check your audio output")).check(matches(isDisplayed())); androidx.test.espresso.Espresso.pressBack();
             onView(withText("About")).perform(scrollTo(), click());
-            onView(withText("VolumeControl 0.1.0")).check(matches(isDisplayed())); androidx.test.espresso.Espresso.pressBack();
+            onView(withText("VolumeControl " + BuildConfig.VERSION_NAME)).check(matches(isDisplayed())); androidx.test.espresso.Espresso.pressBack();
             onView(withText("Volume buttons")).perform(scrollTo(), click()); androidx.test.espresso.Espresso.pressBack();
             assertFalse(VolumeService.running());
         }
