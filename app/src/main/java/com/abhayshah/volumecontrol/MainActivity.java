@@ -76,7 +76,7 @@ public final class MainActivity extends Activity {
         settings.addView(button("Volume buttons", this::keySettings));
         settings.addView(button("Phone volume", () -> open(new Intent(Settings.ACTION_SOUND_SETTINGS))));
         settings.addView(button("Check compatibility", this::compatibility));
-        settings.addView(button("About", () -> new AlertDialog.Builder(this).setTitle("VolumeControl 0.1.0")
+        settings.addView(button("About", () -> new AlertDialog.Builder(this).setTitle("VolumeControl 0.1.1")
                 .setMessage("A quieter range for sensitive headphones.\n\nNo ads, network access, recording, or audio boost. Preferences stay on this phone.\n\nOutput changes and stopping control mute media before releasing the effect. After an Android process kill, the effect can disappear; this app is not a hardware volume limiter.")
                 .setPositiveButton("Got it", null).show()));
         render(); root.requestApplyInsets();
