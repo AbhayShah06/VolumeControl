@@ -1,0 +1,10 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Audio measurement is debug/test-only. Release has no microphone permission. -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <queries><package android:name="com.abhayshah.localmusic" /></queries>
+    <application>
+        <provider android:name="androidx.core.content.FileProvider" android:authorities="${applicationId}.qa" android:exported="false" android:grantUriPermissions="true">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/qa_files" />
+        </provider>
+    </application>
+</manifest>

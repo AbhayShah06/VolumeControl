@@ -1,0 +1,15 @@
+<resources>
+    <style name="AppTheme" parent="android:style/Theme.Material.NoActionBar">
+        <item name="android:fontFamily">sans</item>
+        <item name="android:colorAccent">#FF793F</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+        <item name="android:statusBarColor">#111211</item>
+        <item name="android:navigationBarColor">#111211</item>
+        <item name="android:windowBackground">#111211</item>
+        <item name="android:windowActionModeOverlay">true</item>
+    </style>
+    <string name="key_description">Optional: adjust the fine level with your volume buttons while media is playing. No screen content is read. Calls keep the normal buttons.</string>
+    <string name="connected_profile">%1$s · remembered fine level</string>
+    <string name="control_off">Off · enable to apply fine control</string>
+</resources>
