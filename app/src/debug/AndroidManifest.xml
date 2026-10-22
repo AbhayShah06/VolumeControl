@@ -3,7 +3,7 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <queries><package android:name="com.abhayshah.localmusic" /></queries>
     <application>
-        <provider android:name="androidx.core.content.FileProvider" android:authorities="${applicationId}.qa" android:exported="false" android:grantUriPermissions="true">
+        <provider android:name=".QaFileProvider" android:authorities="${applicationId}.qa" android:exported="false" android:grantUriPermissions="true">
             <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/qa_files" />
         </provider>
     </application>

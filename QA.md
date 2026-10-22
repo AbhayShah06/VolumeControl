@@ -2,6 +2,8 @@
 
 Built with JDK 17 and Android SDK 35. Unit tests, debug/release lint and signed release assembly pass.
 
+Update checks cover newer/current/older releases, invalid URLs and hashes, offline errors, dismissal/manual retry and duplicate banners. Native tests confirm managed APK cleanup waits for the installed target version and leaves other files alone. Downloads verify SHA-256, package/version and signing identity before opening Android's installer.
+
 Android 10/API 29 and Android 16/API 36 emulators cover enable/stop, mute/unmute, rotation, menus, output memory, effect loss, interruptions and large text. Real kernel volume-key events exercise Accessibility control while another app is foreground and verify release after stopping. Tests do not require root on a user's phone; kernel injection is confined to test emulators.
 
 Audio checks measure actual emulator speaker output after Android processing. Levels 100, 67 and 34 reduce a synthetic signal by about 20 dB per step. LocalMusic 0.12.11 plays, pauses, seeks and continues playing while gain changes, including with its equalizer enabled.

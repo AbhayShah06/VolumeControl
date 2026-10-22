@@ -21,6 +21,7 @@ public final class MainActivity extends Activity {
     private Button toggle, minus, plus, mute;
     private SeekBar slider;
     private boolean rendering;
+    private UpdateManager updater;
     private final Runnable refresh = new Runnable() {
         @Override public void run() { render(); handler.postDelayed(this, 500); }
     };
@@ -43,6 +44,10 @@ public final class MainActivity extends Activity {
         title.addView(icon, new LinearLayout.LayoutParams(dp(42), dp(42)));
         TextView name = text("VolumeControl", 25, WHITE); name.setTypeface(null, Typeface.BOLD);
         LinearLayout.LayoutParams nameParams = new LinearLayout.LayoutParams(-1, -2); nameParams.setMarginStart(dp(12)); title.addView(name, nameParams); root.addView(title);
+        LinearLayout updates = column(); space(root, 12); root.addView(updates);
+        updater = UpdateManager.attach(this, updates, message -> {
+            if (message != null) Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        });
         route = text("", 13, MUTED); space(root, 20); root.addView(route);
         LinearLayout dial = card(); space(root, 10); root.addView(dial);
         dial.addView(text("FINE LEVEL", 12, MUTED));
@@ -76,8 +81,9 @@ public final class MainActivity extends Activity {
         settings.addView(button("Volume buttons", this::keySettings));
         settings.addView(button("Phone volume", () -> open(new Intent(Settings.ACTION_SOUND_SETTINGS))));
         settings.addView(button("Check compatibility", this::compatibility));
-        settings.addView(button("About", () -> new AlertDialog.Builder(this).setTitle("VolumeControl 0.1.1")
-                .setMessage("A quieter range for sensitive headphones.\n\nNo ads, network access, recording, or audio boost. Preferences stay on this phone.\n\nOutput changes and stopping control mute media before releasing the effect. After an Android process kill, the effect can disappear; this app is not a hardware volume limiter.")
+        settings.addView(button("Check for updates", () -> updater.checkManually()));
+        settings.addView(button("About", () -> new AlertDialog.Builder(this).setTitle("VolumeControl " + BuildConfig.VERSION_NAME)
+                .setMessage("A quieter range for sensitive headphones.\n\nNo ads, recording, or audio boost. GitHub is contacted for app updates; preferences stay on this phone.\n\nOutput changes and stopping control mute media before releasing the effect. After an Android process kill, the effect can disappear; this app is not a hardware volume limiter.")
                 .setPositiveButton("Got it", null).show()));
         render(); root.requestApplyInsets();
     }
@@ -167,8 +173,9 @@ public final class MainActivity extends Activity {
         }
         return super.onKeyDown(key, event);
     }
-    @Override protected void onResume() { super.onResume(); handler.post(refresh); }
+    @Override protected void onResume() { super.onResume(); handler.post(refresh); if (updater != null) updater.onResume(); }
     @Override protected void onPause() { handler.removeCallbacks(refresh); super.onPause(); }
+    @Override protected void onDestroy() { if (updater != null) updater.close(); super.onDestroy(); }
     private int dp(float n) { return Math.round(n * getResources().getDisplayMetrics().density); }
     private LinearLayout column() { LinearLayout l = new LinearLayout(this); l.setOrientation(LinearLayout.VERTICAL); return l; }
     private LinearLayout card() { LinearLayout l = column(); l.setPadding(dp(16), dp(18), dp(16), dp(18)); l.setBackground(tint(CARD)); return l; }

@@ -13,6 +13,6 @@ This uses Android’s shared-output effect. Some apps, equalizers and USB/Blueto
 
 Reconnects load the saved level while muted; tap Unmute when ready. Identical USB models can share a setting. You can turn memory off in Controls.
 
-No ads, network access, recording or accounts. Release builds have no microphone permission.
+No ads, recording or accounts. GitHub is contacted for update checks and downloads. Release builds have no microphone permission.
 
 Build: JDK 17, Android SDK 35, `./gradlew assembleDebug`. See [QA.md](QA.md) for test coverage and limits.
