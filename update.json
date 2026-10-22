@@ -1,0 +1,7 @@
+{
+  "versionCode": 3,
+  "versionName": "0.1.2",
+  "apkUrl": "https://github.com/AbhayShah06/VolumeControl/releases/download/v0.1.2/VolumeControl-v0.1.2.apk",
+  "sha256": "ced3dee696ed47b744964cb14633ed416f44e2641ef34a0becf098823f3392dc",
+  "notes": "Automatic update checks and installer cleanup."
+}
